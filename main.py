@@ -24,7 +24,7 @@ def glob_hours(content):
     ans = {}
     for table_cell in soup.find_all("tr"):
         link = table_cell.find('a')
-        if link and link.get('href') and link.text == "CA4.CRT":
+        if link and link.get('href') and link.text.endswith(".mpg"):
             for td in table_cell.find_all("td"):
                 if DATE_PTR.match(td.text):
                     ans[td.text] = link.get('href')

@@ -8,6 +8,7 @@ A hackish script to download NGSS camera recordings. Use it at your own risk!
 conda env create -f environment.yml
 conda activate ngss
 python main.py test date
+python main.py test hour
 ```
 
 ## Usage:
