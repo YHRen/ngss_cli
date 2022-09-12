@@ -40,3 +40,4 @@ dependencies:
   - zlib=1.2.12=h4dc903c_2
   - pip:
     - pyyaml==6.0
+    - schedule==1.1.0

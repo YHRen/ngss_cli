@@ -31,3 +31,18 @@ Pick a date from previous list, say, 20220401.
 python main.py list 20220401 --ip=<x.x.x.x>
 ```
 **Replace the IP address `<x.x.x.x>` you found in your browser URL.**
+
+### Download All Recordings of a Day
+
+Pick a date from previous list, say, 20220401.
+```
+python main.py download 20220401 --ip=<x.x.x.x>
+```
+**Replace the IP address `<x.x.x.x>` you found in your browser URL.**
+
+### Continuously Downloading All Recordings of Previous Day at 2 AM
+
+```
+python main.py auto-download --ip=<x.x.x.x>
+```
+**Replace the IP address `<x.x.x.x>` you found in your browser URL.**
