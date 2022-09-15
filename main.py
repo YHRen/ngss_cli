@@ -79,25 +79,24 @@ class NGSS_CLI:
         # download all video of a date
         content = get_page_content(self.video_url(date=date))
         available_records = glob_hours(content)
-        for k, v in available_records:
+        for k, v in available_records.items():
+            v = "http://localhost:8080"+v
             print(f"downloading {k} using {v}")
             download_video(v)
             time.sleep(150) #  sleep 2.5 min to download current video
-            # TODO: figure out how long it takes to download a full video
+            # speed: 150kb/s, regular filesize is about 25MB
 
     def auto_download(self):
         # start to download previous day's video
         yesterday = date.today() - timedelta(days=1)
         print("yesterday:", yesterday.strftime("%Y%m%d"))
         
-        cur_date = yesterday
         def download_cur():
-            nonlocal cur_date
-            date_str = cur_date.strftime("%Y%m%d")
+            yesterday = date.today() - timedelta(days=1)
+            date_str = yesterday.strftime("%Y%m%d")
             print(f"downloading {date_str} at {datetime.now()}")
-            status = self.download(date=date_str)
-            cur_date = cur_date + timedelta(days=1)
-            return status
+            self.download(date=date_str)
+
 
         # download previous day's video at 2am
         schedule.every().day.at("02:00").do(download_cur)
@@ -159,7 +158,7 @@ class NGSS_CLI:
 
         while True:
             schedule.run_pending()
-            time.sleep(1) # sleep for 5 mins
+            time.sleep(1) # check every second
 
 
 if __name__ == "__main__":
